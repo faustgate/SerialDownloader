@@ -1,0 +1,35 @@
+<html>
+<head>
+    {% if title %}
+    <title>{{title}} - microblog2</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+</head>
+<body>
+<table border="2">
+    {% for serial in info %}
+    <tr>
+        <td>
+            <img src="/cache/{{serial.pstr}}" height="355" width="265">
+        </td>
+        <td height="100%">
+            <table border="1">
+                <tr>
+                    <td valign="top" align="center"><a href="{{serial.link}}">{{serial.name}}</a></td>
+                </tr>
+                <tr>
+                    <td>{{serial.desc}}</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <form action="download">
+                <button name="id" type="submit" value="{{serial.id}}">Загрузить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
