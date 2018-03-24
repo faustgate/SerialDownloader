@@ -15,10 +15,7 @@ class SerialWorker(object):
     def __init__(self):
         self.BASE_URL = 'http://sitandwatch.org'
         self.SERIAL_LIST_URL_TPL = '{0}/serialsub/page/{1}'
-        DB_NAME = os.path.join(os.path.dirname(__file__), "serials.db")
         self.cache_location = os.path.join(os.path.dirname(__file__), "cache")
-        self.con = sqlite3.connect(DB_NAME)
-        self.cur = self.con.cursor()
         self.serial_list_xpath = '//article'
         self.poster_xpath = '//div[@class="full-poster"]/img/@src'
         self.name_xpath = '/html/body/div[4]/div[2]/div/div[2]/h1/text()'
@@ -26,6 +23,9 @@ class SerialWorker(object):
         self.strings_to_remove_from_names = ['Сериал', 'Субтитры']
         self.download_cmd_tpl = 'wget -O "serials/{0}/{1}{2}" {3} > /dev/null 2>&1 &'
 
+        DB_NAME = os.path.join(os.path.dirname(__file__), "yourcinema.db")
+        self.con = sqlite3.connect(DB_NAME)
+        self.cur = self.con.cursor()
         self.init_db()
 
         self.existing_serials = self.get_existing_serial_pages()

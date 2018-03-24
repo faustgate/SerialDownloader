@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_file, request, make_response
-import badcinema as source
+import yourcinema as source
 
 app = Flask(__name__)
 
